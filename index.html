@@ -246,27 +246,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* mostrar surpresa */
   window.mostrarSurpresa = function () {
+
     const surpresa = document.getElementById("surpresa");
 
     if (surpresa) {
+
       surpresa.style.display = "block";
 
       setTimeout(() => {
+
         surpresa.scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
+
       }, 200);
     }
   };
 
   /* =========================
-     CONTADOR 10 ANOS
+     CONTADOR AUTOMÁTICO
   ========================= */
 
-  // Data aproximada desde quando começou
-  // a gostar dela
-  const dataInicio = new Date("2015-01-01");
+  // DATA DE INÍCIO
+  // altere se quiser
+  const dataInicio = new Date("2015-09-14");
 
   function atualizarContador() {
 
@@ -285,14 +289,16 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       contador.innerHTML =
-        dias + " dias pensando em você ❤️";
+        dias.toLocaleString('pt-BR') +
+        " dias pensando em você ❤️";
     }
   }
 
-  // atualiza imediatamente
+  // executa imediatamente
   atualizarContador();
 
-  // atualiza automaticamente a cada hora
+  // atualiza sozinho
+  // a cada 1 hora
   setInterval(atualizarContador, 1000 * 60 * 60);
 
 });
