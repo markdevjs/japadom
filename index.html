@@ -227,53 +227,77 @@
   </section>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const texto = "Essa página existe por um motivo: você ✨";
-      let i = 0;
-      const titulo = document.getElementById("titulo");
+document.addEventListener("DOMContentLoaded", function () {
 
-      function digitar() {
-        if (titulo && i < texto.length) {
-          titulo.innerHTML += texto.charAt(i);
-          i++;
-          setTimeout(digitar, 60);
-        }
-      }
+  /* efeito digitação */
+  const texto = "Essa página existe por um motivo: você ✨";
+  let i = 0;
+  const titulo = document.getElementById("titulo");
 
-      digitar();
+  function digitar() {
+    if (titulo && i < texto.length) {
+      titulo.innerHTML += texto.charAt(i);
+      i++;
+      setTimeout(digitar, 60);
+    }
+  }
 
-      window.mostrarSurpresa = function () {
-        const surpresa = document.getElementById("surpresa");
+  digitar();
 
-        if (surpresa) {
-          surpresa.style.display = "block";
+  /* mostrar surpresa */
+  window.mostrarSurpresa = function () {
+    const surpresa = document.getElementById("surpresa");
 
-          setTimeout(() => {
-            surpresa.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-          }, 200);
-        }
-      };
+    if (surpresa) {
+      surpresa.style.display = "block";
 
-      const dataInicio = new Date("2025-01-01");
+      setTimeout(() => {
+        surpresa.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 200);
+    }
+  };
 
-      function atualizarContador() {
-        const contador = document.getElementById("contador");
+  /* =========================
+     CONTADOR 10 ANOS
+  ========================= */
 
-        if (contador) {
-          const agora = new Date();
-          const diferenca = agora - dataInicio;
-          const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+  // Data aproximada desde quando começou
+  // a gostar dela
+  const dataInicio = new Date("2015-01-01");
 
-          contador.innerHTML = dias + " dias pensando em você ❤️";
-        }
-      }
+  function atualizarContador() {
 
-      atualizarContador();
-    });
-  </script>
+    const contador = document.getElementById("contador");
+
+    if (contador) {
+
+      const agora = new Date();
+
+      // diferença em milissegundos
+      const diferenca = agora - dataInicio;
+
+      // converter para dias
+      const dias = Math.floor(
+        diferenca / (1000 * 60 * 60 * 24)
+      );
+
+      contador.innerHTML =
+        dias + " dias pensando em você ❤️";
+    }
+  }
+
+  // atualiza imediatamente
+  atualizarContador();
+
+  // atualiza automaticamente a cada hora
+  setInterval(atualizarContador, 1000 * 60 * 60);
+
+});
+</script>
+
 
 </body>
 </html>
