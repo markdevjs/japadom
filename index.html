@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -100,15 +99,11 @@
 
     .hero .container,
     .surpresa .container{
-
       background:rgba(255,255,255,0.82);
       backdrop-filter:blur(12px);
       border-radius:30px;
       padding:50px;
-
-      box-shadow:
-      0 15px 40px rgba(0,0,0,0.08);
-
+      box-shadow:0 15px 40px rgba(0,0,0,0.08);
     }
 
     h1{
@@ -136,33 +131,21 @@
     }
 
     button{
-
-      background:
-      linear-gradient(45deg,#c44569,#ff6b81);
-
+      background:linear-gradient(45deg,#c44569,#ff6b81);
       color:white;
       border:none;
       padding:16px 34px;
       border-radius:50px;
       cursor:pointer;
-
       font-size:1rem;
       font-weight:600;
-
       transition:.4s;
-
-      box-shadow:
-      0 10px 25px rgba(196,69,105,.25);
-
+      box-shadow:0 10px 25px rgba(196,69,105,.25);
     }
 
     button:hover{
-      transform:
-      translateY(-4px)
-      scale(1.03);
-
-      box-shadow:
-      0 15px 35px rgba(196,69,105,.35);
+      transform:translateY(-4px) scale(1.03);
+      box-shadow:0 15px 35px rgba(196,69,105,.35);
     }
 
     .surpresa{
@@ -178,18 +161,11 @@
     }
 
     .contador{
-
       margin:35px 0;
       padding:25px;
-
       border-radius:25px;
-
-      background:
-      rgba(255,255,255,0.65);
-
-      box-shadow:
-      0 10px 25px rgba(0,0,0,0.05);
-
+      background:rgba(255,255,255,0.65);
+      box-shadow:0 10px 25px rgba(0,0,0,0.05);
     }
 
     #contador{
@@ -233,7 +209,6 @@
 
   <!-- HERO -->
   <section class="hero">
-
     <div class="container">
 
       <h1 id="titulo"></h1>
@@ -248,12 +223,10 @@
       </button>
 
     </div>
-
   </section>
 
   <!-- SURPRESA -->
   <section class="surpresa" id="surpresa">
-
     <div class="container">
 
       <h2>Tem algo que eu queria te dizer...</h2>
@@ -275,13 +248,8 @@
       </p>
 
       <div class="contador">
-
-        <h3>
-          Já fazem:
-        </h3>
-
+        <h3>Já fazem:</h3>
         <p id="contador"></p>
-
       </div>
 
       <p class="destaque">
@@ -289,7 +257,6 @@
       </p>
 
     </div>
-
   </section>
 
   <script>
@@ -310,12 +277,11 @@
 
         if(titulo && i < texto.length){
 
-          titulo.innerHTML +=
-          texto.charAt(i);
+          titulo.innerHTML += texto.charAt(i);
 
           i++;
 
-          setTimeout(digitar,60);
+          setTimeout(digitar, 60);
         }
       }
 
@@ -332,26 +298,24 @@
 
           surpresa.style.display = "block";
 
-          setTimeout(()=>{
+          setTimeout(() => {
 
             surpresa.scrollIntoView({
-              behavior:"smooth",
-              block:"start"
+              behavior: "smooth",
+              block: "start"
             });
 
-          },200);
-
+          }, 200);
         }
-
       };
 
       /* CONTADOR AUTOMÁTICO */
 
-      // DATA DE INÍCIO
-      // ALTERE SE QUISER
+      // começa com 3.650 dias (10 anos)
+      const diasBase = 3650;
 
-      const dataInicio =
-      new Date("2015-09-14");
+      // salva a data de hoje como ponto inicial
+      const dataBase = new Date();
 
       function atualizarContador(){
 
@@ -360,32 +324,33 @@
 
         if(contador){
 
-          const agora =
-          new Date();
+          const agora = new Date();
 
+          // diferença entre hoje e a data base
           const diferenca =
-          agora - dataInicio;
+          agora - dataBase;
 
-          const dias =
+          // converter em dias
+          const diasPassados =
           Math.floor(
             diferenca /
             (1000 * 60 * 60 * 24)
           );
 
+          // soma com os 10 anos
+          const totalDias =
+          diasBase + diasPassados;
+
           contador.innerHTML =
-          dias.toLocaleString('pt-BR') +
+          totalDias.toLocaleString('pt-BR') +
           " dias pensando em você ❤️";
-
         }
-
       }
 
-      /* executa imediatamente */
-
+      // executa imediatamente
       atualizarContador();
 
-      /* atualiza sozinho */
-
+      // atualiza sozinho automaticamente
       setInterval(
         atualizarContador,
         1000 * 60 * 60
